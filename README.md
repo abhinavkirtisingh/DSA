@@ -1,6 +1,6 @@
 # DSA
 This is my DSA repository for GFG and LEETCODE.
 <br>
--Developer - Abhinav
+-Developer - Abhinav Singh
 <br>
--Frequency - Daily
+-Coding Frequency - Daily
