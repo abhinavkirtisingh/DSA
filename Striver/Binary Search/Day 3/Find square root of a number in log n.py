@@ -19,4 +19,6 @@ class Solution:
                 high = mid
             
         return ans
+
+print(5**3)
         
