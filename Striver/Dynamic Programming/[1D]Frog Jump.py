@@ -34,3 +34,22 @@ class Solution:
             return dp[index]
         
         return fun(n-1)
+    
+
+# Space optimized
+
+class Solution:
+    def minCost(self, height):
+        # code here
+        
+        n = len(height)
+        if n == 1:
+            return 0
+        
+        p1 = 0
+        p2 = abs(height[0] - height[1])
+        for i in range(2,n):
+            cur = min(abs(height[i] - height[i-1]) + p2,  abs(height[i] - height[i-2]) + p1)
+            p1 = p2
+            p2 = cur
+        return cur
