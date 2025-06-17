@@ -5,9 +5,9 @@ class Solution:
         
         dp = [[None for i in range(m)] for j in range(n)]
         def fun(i,j):
-            if i >= n or j >= m or i < 0 or j < 0:
+            if i >= n or j >= m:
                 return 0
-            if i == n-1 and j == m-1:
+            if (i,j) == (n-1,m-1):
                 return 1
             if dp[i][j] is not None:
                 return dp[i][j]
