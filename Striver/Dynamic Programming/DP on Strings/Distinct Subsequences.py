@@ -42,7 +42,7 @@ class Solution:
                     dp[index1][index2] = dp[index1-1][index2]
         return dp[N][M]
 
-# space optimized
+# space optimized (1d * 2) array
 
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
@@ -61,4 +61,24 @@ class Solution:
                 else:  
                     temp[index2] = dp[index2]
             dp = temp.copy()
+        return dp[M]
+
+# space optimized 1d array
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:
+
+        N = len(s)
+        M = len(t)
+        dp = [0 for i in range(M+1)]
+
+        dp[0] = 1
+        
+        for index1 in range(1,N+1):
+            
+            for index2 in range(M,0,-1):
+                if s[index1-1] == t[index2-1]:
+                    dp[index2] = dp[index2] + dp[index2-1] 
+                else:  
+                    dp[index2] = dp[index2]
+            
         return dp[M]
