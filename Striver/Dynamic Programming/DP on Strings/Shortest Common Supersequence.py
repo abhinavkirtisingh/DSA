@@ -2,6 +2,7 @@
 # start from n,m and whenever their is a match move diagonally and include the element once
 # else move go to the max(dp[i][j-1],dp[i-1][j]), If dp[i-1][j] > dp[i][j-1] then add string[i] in answer and move up. Do same in case of dp[i][j-1] > dp[i-1][j]
 # https://leetcode.com/problems/shortest-common-supersequence/
+#changes
 
 class Solution:
     def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
@@ -39,5 +40,4 @@ class Solution:
             st += str1[i-1::-1]
         if j > 0:
             st += str2[j-1::-1]
-        
         return st[::-1]
