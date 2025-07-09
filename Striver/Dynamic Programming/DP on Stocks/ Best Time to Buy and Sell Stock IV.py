@@ -18,8 +18,8 @@ class Solution:
         
         return f(0,1,k)
 
-# N (K X 2) 
-
+# N X (K X 2) 
+# Memorization
 class Solution:
     def maxProfit(self, k: int, prices: List[int]) -> int:
 
@@ -38,3 +38,36 @@ class Solution:
             return dp[index][tran]
         
         return f(0,0)
+
+# Tabulation N X (K X 2)
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+
+        N = len(prices)
+        dp = [[0 for i in range((2*k)+1)] for j in range(N+1)]
+        for index in range(N-1,-1,-1):
+            for tran in range((2*k)):
+                if tran%2 == 0:
+                    dp[index][tran] = max(dp[index+1][tran+1] - prices[index], dp[index+1][tran])
+                else:
+                    dp[index][tran] = max(prices[index] + dp[index+1][tran+1], dp[index+1][tran])
+
+        return dp[0][0]
+
+# Space optimized N X (K X 2)
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+
+        N = len(prices)
+        dp = [0 for i in range((2*k)+1)] 
+        prev = [0 for i in range((2*k)+1)]
+        for index in range(N-1,-1,-1):
+            for tran in range((2*k)):
+                if tran%2 == 0:
+                    dp[tran] = max(prev[tran+1] - prices[index], prev[tran])
+                else:
+                    dp[tran] = max(prices[index] + prev[tran+1], prev[tran])
+            
+                prev = dp.copy()
+
+        return dp[0]
